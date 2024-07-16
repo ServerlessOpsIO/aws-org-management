@@ -1,7 +1,24 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
-Description: AWS account infrastructure
+Description: AWS account infrastructure stackset (Billing)
+
+Parameters:
+  TargetOuIds:
+    Type: String
+    Description: List of OUs
+    Default: r-c834
+  TargetRegions:
+    Type: String
+    Description: Regions to deploy to
+    Default: us-east-1,us-east-2
 
 Resources:
+  OrgBillingStack:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: "./stacksets/billing.yaml"
+      Parameters:
+        TargetOuIds: !Ref TargetOuIds
+        TargetRegions: !Ref TargetRegions
 
-Outputs:
+
