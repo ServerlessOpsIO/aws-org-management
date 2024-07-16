@@ -21,8 +21,8 @@ Resources:
             OrganizationalUnitIds: !Ref TargetOuIds
           Regions: !Ref TargetRegions
       AutoDeployment:
-        Enabled: True
-        RetainStacksOnAccountRemoval: True
+        Enabled: true
+        RetainStacksOnAccountRemoval: false
       ManagedExecution:
         Active: true
       OperationPreferences:
