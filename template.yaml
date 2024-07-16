@@ -21,4 +21,10 @@ Resources:
         TargetOuIds: !Ref TargetOuIds
         TargetRegions: !Ref TargetRegions
 
-
+  OrgCloudTrailStack:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: "./stacksets/cloudtrail.yaml"
+      Parameters:
+        TargetOuIds: !Ref TargetOuIds
+        TargetRegions: us-east-1
