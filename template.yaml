@@ -7,10 +7,10 @@ Parameters:
     Type: String
     Description: List of OUs
     Default: r-c834
-  TargetRegions:
-    Type: String
-    Description: Regions to deploy to
-    Default: us-east-1,us-east-2
+#  TargetRegions:
+#    Type: String
+#    Description: Regions to deploy to
+#    Default: us-east-1,us-east-2
 
 Resources:
   OrgBillingStack:
@@ -19,7 +19,7 @@ Resources:
       Location: "./stacksets/billing.yaml"
       Parameters:
         TargetOuIds: !Ref TargetOuIds
-        TargetRegions: !Ref TargetRegions
+        TargetRegions: us-east-1
 
   OrgCloudTrailStack:
     Type: AWS::Serverless::Application
