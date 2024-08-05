@@ -1,0 +1,61 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: AWS account infrastructure stackset (DNS)
+
+Parameters:
+  TargetOuIds:
+    Type: CommaDelimitedList
+    Description: List of OUs
+  TargetRegions:
+    Type: CommaDelimitedList
+    Description: Regions to deploy to
+
+Resources:
+  OrgDns:
+    Type: AWS::CloudFormation::StackSet
+    Properties:
+      StackSetName: OrgDns
+      Description: DNS Configuration
+      AutoDeployment:
+        Enabled: false
+      ManagedExecution:
+        Active: true
+      OperationPreferences:
+        RegionConcurrencyType: PARALLEL
+        FailureToleranceCount: 1
+        MaxConcurrentCount: 5
+      PermissionModel: SERVICE_MANAGED
+      Parameters:
+        - ParameterKey: ParentDomain
+          ParameterValue: "serverlessops.io"
+        - ParameterKey: SubDomain
+          ParameterValue: "fixme"
+      TemplateBody: |
+        AWSTemplateFormatVersion: '2010-09-09'
+        Description: AWS account infrastructure (DNS)
+        Parameters:
+          ParentDomain:
+            Type: String
+            Description: Name of parent DNS domain
+          SubDomain:
+            Type: String
+            Description: Name of DNS sub-domain
+        Resources:
+          HostedZone:
+            Type: "AWS::Route53::HostedZone"
+            Properties:
+              Name: !Sub "${SubDomain}.${ParentDomain}"
+              HostedZoneConfig:
+                Comment: !Sub "ServerlessOps - ${SubDomain}.${ParentDomain}"
+          HostedZoneDomainNameSsmParam:
+            Type: "AWS::SSM::Parameter"
+            Properties:
+              Name: "/infra/dns/DomainName"
+              Type: String
+              Value: !Sub "${SubDomain}.${ParentDomain}"
+          HostedZoneSsmParam:
+            Type: "AWS::SSM::Parameter"
+            Properties:
+              Name: "/infra/dns/NameServers"
+              Type: String
+              Value: !Join [',', !GetAtt HostedZone.NameServers]
