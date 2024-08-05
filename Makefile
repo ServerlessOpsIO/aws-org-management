@@ -24,7 +24,7 @@ check_profile:
 
 build:
 	$(info Building application)
-	sam build --use-container --parallel --template ${SAM_TEMPLATE}
+	sam build --parallel --template ${SAM_TEMPLATE}
 
 validate:
 	$(info linting SAM template)
