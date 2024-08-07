@@ -7,16 +7,21 @@ Parameters:
     Type: String
     Description: List of OUs
     Default: r-c834
-#  TargetRegions:
-#    Type: String
-#    Description: Regions to deploy to
-#    Default: us-east-1,us-east-2
+  TargetRegions:
+    Type: String
+    Description: Regions to deploy to
+    Default: us-east-1,us-east-2
 
 Resources:
+  StacksetTemplateBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub "${AWS::StackName}-stacksets-${AWS::AccountId}-${AWS::Region}"
+
   OrgBillingStack:
     Type: AWS::Serverless::Application
     Properties:
-      Location: "./stacksets/billing.yaml"
+      Location: "./stacksets/billing/stackset.yaml"
       Parameters:
         TargetOuIds: !Ref TargetOuIds
         TargetRegions: us-east-1
