@@ -15,8 +15,8 @@ STACKNAME = $(APPNAME)-$(BRANCH)
 AWS_REGION ?= $(shell aws configure get region)
 PIPELINE_STACKNAME = $(APPNAME)-pipeline-$(BRANCH)
 PIPELINE_CONFIG_FILE ?= codepipeline-config-$(BRANCH).yaml
-REPO_ID ?= ServerlessOpsIO/serverlessops-infra
-BRANCH ?= 'master'
+REPO_ID ?= ServerlessOpsIO/aws-org-management
+BRANCH ?= 'main'
 
 check_profile:
 	# Make sure we have a user-scoped credentials profile set. We don't want to be accidentally using the default profile
