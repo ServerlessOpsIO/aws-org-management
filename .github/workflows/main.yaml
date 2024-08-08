@@ -65,7 +65,7 @@ jobs:
           sam package \
             --resolve-s3 \
             --s3-prefix ${{ env.GITHUB_REPOSITORY_OWNER_PART_SLUG_URL }}/${{ env.GITHUB_REPOSITORY_NAME_PART_SLUG_URL }}/${{ env.GITHUB_REF_SLUG_URL }} \
-            --region ${{ inputs.aws_account_region }} \
+            --region us-east-1 \
             --output-template-file packaged-template.yaml
 
       - name: 'Upload pipeline artifact'
