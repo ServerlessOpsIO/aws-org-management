@@ -53,10 +53,10 @@ jobs:
         uses: aws-actions/setup-sam@v2
 
       - name: Validate artifact
-        run: make validate
+        run: sam validate --lint
 
       - name: Build artifact
-        run: make build
+        run: sam build --parallel --template template.yaml
 
       - name: Upload SAM artifact
         id: upload-sam
