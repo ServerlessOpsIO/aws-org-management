@@ -1,0 +1,65 @@
+name: Main
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - name: Set extra GitHub environment variables
+        id: github-env-vars
+        uses: rlespinasse/github-slug-action@v4
+
+      - name: Checkout source
+        id: checkout-source
+        uses: actions/checkout@v4
+
+      - name: Assume build account AWS credentials
+        id: build-account-credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::346402060170:role/GitHubActionsBuildRole
+          role-session-name: ${{ env.GITHUB_REPOSITORY_NAME_PART_SLUG_URL }}-${{ github.run_number }}-${{ github.job }}
+          role-duration-seconds: 3600   # 60 minutes; needs to be less than our current max duration
+          aws-region: us-east-1
+
+      - name: Install AWS SAM
+        uses: aws-actions/setup-sam@v2
+
+      - name: Validate artifact
+        run: make validate
+
+      - name: Build artifact
+        run: make build
+
+      - name: Upload SAM artifact
+        id: upload-sam
+        shell: bash
+        run: |
+          sam package \
+            --resolve-s3 \
+            --s3-prefix ${{ env.GITHUB_REPOSITORY_OWNER_PART_SLUG_URL }}/${{ env.GITHUB_REPOSITORY_NAME_PART_SLUG_URL }}/${{ env.GITHUB_REF_SLUG_URL }} \
+            --region ${{ inputs.aws_account_region }} \
+            --output-template-file packaged-template.yaml
+
+      - name: 'Upload pipeline artifact'
+        id: upload-artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.GITHUB_REPOSITORY_SLUG }}-${{ env.GITHUB_REF_SLUG_URL }}-${{ github.run_number }}-${{ github.sha }}
+          path: |
+            **/*
+            !.aws-sam/build
+            !**/.terraform/providers
+            !node_modules
+            !.git
+          if-no-files-found: error
+          retention-days: 30
