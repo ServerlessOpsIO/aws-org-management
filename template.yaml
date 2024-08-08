@@ -18,7 +18,7 @@ Resources:
     Properties:
       BucketName: !Sub "${AWS::StackName}-stacksets-${AWS::AccountId}-${AWS::Region}"
 
-  OrgBillingStack:
+  BillingStack:
     Type: AWS::Serverless::Application
     Properties:
       Location: "./stacksets/billing/stackset.yaml"
