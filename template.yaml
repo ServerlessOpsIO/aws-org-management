@@ -7,10 +7,6 @@ Parameters:
     Type: String
     Description: List of OUs
     Default: r-c834
-  TargetRegions:
-    Type: String
-    Description: Regions to deploy to
-    Default: us-east-1,us-east-2
 
 Resources:
   StacksetTemplateBucket:
