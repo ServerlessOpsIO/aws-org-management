@@ -29,7 +29,7 @@ build:
 validate:
 	$(info linting SAM template)
 	$(info linting CloudFormation)
-	@cfn-lint template.yaml
+	@pipenv run cfn-lint template.yaml
 	$(info validating SAM template)
 	@sam validate
 
