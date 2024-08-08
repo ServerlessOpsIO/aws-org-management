@@ -29,6 +29,12 @@ jobs:
           python-version: 3.12
           cache: pipenv
 
+      - name: Install pipenv
+        id: install-pipenv
+        shell: bash
+        run: python -m pip install --upgrade pipenv
+
+
       - name: Install dependencies
         id: install-python-deps
         shell: bash
