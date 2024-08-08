@@ -123,10 +123,20 @@ jobs:
         id: build-account-credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
+          role-to-assume: arn:aws:iam::346402060170:role/GitHubActionsBuildRole
+          role-session-name: ${{ env.GITHUB_REPOSITORY_NAME_PART_SLUG_URL }}-${{ github.run_number }}-${{ github.job }}
+          role-duration-seconds: 3600   # 60 minutes; needs to be less than our current max duration
+          aws-region: us-east-1
+
+      - name: Assume deploy account AWS credentials
+        id: deploy-account-credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
           role-to-assume: arn:aws:iam::346402060170:role/GitHubActionsCfnDeployRole
           role-session-name: ${{ env.GITHUB_REPOSITORY_NAME_PART_SLUG_URL }}-${{ github.run_number }}-${{ github.job }}
           role-duration-seconds: 3600   # 60 minutes; needs to be less than our current max duration
           aws-region: us-east-1
+          role-chaining: true
 
       - name: Install AWS SAM
         uses: aws-actions/setup-sam@v2
