@@ -15,7 +15,7 @@ Resources:
   ###
   # IAM Roles
   ###
-  GitHubActionsBuildRole:ws s3 sync --help
+  GitHubActionsBuildRole:
     Type: AWS::IAM::Role
     Properties:
       RoleName: "GitHubActionsBuildRole"

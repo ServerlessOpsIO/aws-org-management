@@ -152,7 +152,7 @@ jobs:
               map("--tags \(.key)=\(.value|tostring)") |
               . += [
                 {
-                  "org:branch" ":"${{ env.GITHUB_EVENT_REF_SLUG_URL }}"
+                  "org:branch":"${{ env.GITHUB_EVENT_REF_SLUG_URL }}"
                 },
                 {
                   "org:stackName":"${{ env.GITHUB_REPOSITORY_NAME_PART_SLUG_URL }}-${{ env.GITHUB_EVENT_REF_SLUG_URL }}"
