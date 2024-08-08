@@ -29,6 +29,11 @@ jobs:
           python-version: 3.12
           cache: pipenv
 
+      - name: Install dependencies
+        id: install-python-deps
+        shell: bash
+        run: pipenv install --dev
+
       - name: Assume build account AWS credentials
         id: build-account-credentials
         uses: aws-actions/configure-aws-credentials@v4
