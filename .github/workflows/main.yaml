@@ -137,18 +137,19 @@ jobs:
         run: >-
           echo "AWS_CFN_TAGS=$(
             cat cfn-tags.json |
-            jq -c 'to_entries |
-              map({"Key": .key, "Value": .value}) |
+            jq '
+              to_entries |
+              map("--tags \(.key)=\(.value|tostring)") |
               . += [
                 {
-                  "Key":"org:branch",
-                  "Value":"${{ env.GITHUB_EVENT_REF_SLUG_URL }}"
+                  "org:branch" ":"${{ env.GITHUB_EVENT_REF_SLUG_URL }}"
                 },
                 {
-                  "Key":"org:stackName",
-                  "Value":"${{ env.GITHUB_REPOSITORY_NAME_PART_SLUG_URL }}-${{ env.GITHUB_EVENT_REF_SLUG_URL }}"
+                  "org:stackName":"${{ env.GITHUB_REPOSITORY_NAME_PART_SLUG_URL }}-${{ env.GITHUB_EVENT_REF_SLUG_URL }}"
                 }
-              ]'
+              ] |
+              join(" ")
+            '
           )" >> $GITHUB_ENV
 
       - name: Process AWS Cloudformation Parameters
@@ -157,10 +158,11 @@ jobs:
         run: >-
          echo "AWS_CFN_PARAMS=$(
             cat cfn-parameters.json |
-            jq -c '
+            jq '
               to_entries |
-              map({"ParameterKey": .key, "ParameterValue": .value})
-              '
+              map("--parameter-overrides \(.key)=\(.value|tostring)") |
+              join(" ")
+            '
           )" >> $GITHUB_ENV
 
       - name: Deploy via SAM
@@ -172,5 +174,5 @@ jobs:
             --s3-bucket aws-sam-cli-sourcebucket-346402060170-us-east-1 \
             --s3-prefix ${{ env.GITHUB_REPOSITORY_OWNER_PART_SLUG_URL }}/${{ env.GITHUB_REPOSITORY_NAME_PART_SLUG_URL }}/${{ env.GITHUB_REF_SLUG_URL }} \
             --region us-east-1 \
-            --parameter-overrides $AWS_CFN_PARAMS \
-            --tags $AWS_CFN_TAGS
+            $AWS_CFN_PARAMS \
+            $AWS_CFN_TAGS
