@@ -151,12 +151,8 @@ jobs:
               to_entries |
               map("--tags \(.key)=\(.value|tostring)") |
               . += [
-                {
-                  "org:branch":"${{ env.GITHUB_EVENT_REF_SLUG_URL }}"
-                },
-                {
-                  "org:stackName":"${{ env.GITHUB_REPOSITORY_NAME_PART_SLUG_URL }}-${{ env.GITHUB_EVENT_REF_SLUG_URL }}"
-                }
+                "--tags org:branch=${{ env.GITHUB_EVENT_REF_SLUG_URL }}",
+                "--tags org:stackName=${{ env.GITHUB_REPOSITORY_NAME_PART_SLUG_URL }}-${{ env.GITHUB_EVENT_REF_SLUG_URL }}"
               ] |
               join(" ")
             '
@@ -170,7 +166,7 @@ jobs:
             cat cfn-parameters.json |
             jq -r '
               to_entries |
-              map("--parameter-overrides \(.key)=\(.value|tostring)") |
+              map("--parameter \(.key)=\(.value|tostring)") |
               join(" ")
             '
           )" >> $GITHUB_ENV
