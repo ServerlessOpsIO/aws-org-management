@@ -22,37 +22,3 @@ Resources:
         TargetOuIds: !Ref TargetOuIds
         TargetRegions: us-east-1
         StacksetTemplateBucket: !Ref StacksetTemplateBucket
-
-  GhaBuildStack:
-    Type: AWS::Serverless::Application
-    Properties:
-      Location: "./stacksets/gha-build/stackset.yaml"
-      Parameters:
-        TargetOuIds: 'ou-c834-usscdqbg'  # CI/CD OU only
-        TargetRegions: us-east-1
-        StacksetTemplateBucket: !Ref StacksetTemplateBucket
-
-  GhaDeployStack:
-    Type: AWS::Serverless::Application
-    Properties:
-      Location: "./stacksets/gha-deploy/stackset.yaml"
-      Parameters:
-        TargetOuIds: !Ref TargetOuIds
-        TargetRegions: us-east-1
-        StacksetTemplateBucket: !Ref StacksetTemplateBucket
-
-  GhaDeployStackManagement:
-    Type: AWS::Serverless::Application
-    Properties:
-      Location: "./stacksets/gha-deploy/template.yaml"
-      Parameters:
-        CicdAwsAccountId: '346402060170'
-        DeployBucketArn: 'arn:aws:s3:::aws-sam-cli-sourcebucket-346402060170-us-east-1'
-
-#  OrgDnsStack:
-#    Type: AWS::Serverless::Application
-#    Properties:
-#      Location: "./stacksets/dns.yaml"
-#      Parameters:
-#        TargetOuIds: !Ref TargetOuIds
-#        TargetRegions: us-east-1
