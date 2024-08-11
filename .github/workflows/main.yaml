@@ -60,7 +60,7 @@ jobs:
         run: |
           for _f in $(find . -type f -name 'stackset.yaml'); do
             _dir=$(dirname $_f);
-            yq '.Metadata.TemplateBody*' $_f > $_dir/template.yaml;
+            yq '.Metadata.TemplateBody' $_f > $_dir/template.yaml;
           done
 
       - name: Build artifact

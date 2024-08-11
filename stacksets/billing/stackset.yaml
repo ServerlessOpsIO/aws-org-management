@@ -16,7 +16,7 @@ Parameters:
     Description: Regions to deploy to
 
 Metadata:
-  TemplateBody: &template_body
+  TemplateBody: &template_body |
     AWSTemplateFormatVersion: '2010-09-09'
     Description: AWS account infrastructure (billing)
     Resources:
@@ -97,5 +97,4 @@ Resources:
         FailureToleranceCount: 1
         MaxConcurrentCount: 5
       PermissionModel: SERVICE_MANAGED
-      TemplateBody:
-        Fn::ToJsonString: *template_body
+      TemplateBody: *template_body
