@@ -56,6 +56,9 @@ jobs:
       - name: Validate artifact
         run: sam validate --lint
 
+      - name: YQ version
+        run: yq -V
+
       - name: Generate management account stacks
         run: |
           for _f in $(find . -type f -name 'stackset.yaml'); do
