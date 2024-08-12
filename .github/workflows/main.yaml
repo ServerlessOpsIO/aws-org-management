@@ -59,9 +59,10 @@ jobs:
       - name: Synethsize StackSet templates
         run: |
           for _f in $(find . -type f -name 'stackset.yaml'); do
+            _dir="$(dirname $_f)/" \
             yq \
               -i \
-              '.Metadata.TemplateBody |= load_str("./template.yaml")' \
+              ".Metadata.TemplateBody |= load_str(strenv(_dir) + .)" \
               $_f;
           done
 
