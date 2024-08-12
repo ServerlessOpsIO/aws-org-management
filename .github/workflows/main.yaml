@@ -61,7 +61,7 @@ jobs:
           for _f in $(find . -type f -name 'stackset.yaml'); do
             yq \
               -i \
-              '.Metadata.TemplateBody |= load("./template.yaml") | .Metadata.TemplateBody |= to_yaml' \
+              '.Metadata.TemplateBody |= load_str("./template.yaml")' \
               $_f;
           done
 
