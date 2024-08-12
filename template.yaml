@@ -9,11 +9,6 @@ Parameters:
     Default: r-c834
 
 Resources:
-  StacksetTemplateBucket:
-    Type: AWS::S3::Bucket
-    Properties:
-      BucketName: !Sub "${AWS::StackName}-stacksets-${AWS::AccountId}-${AWS::Region}"
-
   BillingStackSet:
     Type: AWS::Serverless::Application
     Properties:
