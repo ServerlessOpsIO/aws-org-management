@@ -21,7 +21,6 @@ Resources:
       Parameters:
         TargetOuIds: !Ref TargetOuIds
         TargetRegions: us-east-1
-        StacksetTemplateBucket: !Ref StacksetTemplateBucket
 
   BillingStackManagement:
     Type: AWS::Serverless::Application

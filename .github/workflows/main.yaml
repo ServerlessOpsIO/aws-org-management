@@ -56,11 +56,13 @@ jobs:
       - name: Validate artifact
         run: sam validate --lint
 
-      - name: Generate management account stacks
+      - name: Synethsize StackSet templates
         run: |
           for _f in $(find . -type f -name 'stackset.yaml'); do
-            _dir=$(dirname $_f);
-            yq '.Metadata.TemplateBody' $_f > $_dir/template.yaml;
+            yq \
+              -i \
+              '.Metadata.TemplateBody |= load("./template.yaml") | .Metadata.TemplateBody |= to_yaml' \
+              $_f;
           done
 
       - name: Build artifact
