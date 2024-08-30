@@ -1,0 +1,28 @@
+# AWS Cloudformation template for stacksets/org-ou
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: AWS Organization OUs
+
+Parameters:
+  RootOuId:
+    Type: String
+    Description: Root OU Id
+
+Resources:
+  DevelopmentOu:
+    Type: AWS::Organizations::OrganizationalUnit
+    Properties:
+      Name: Development
+      ParentId: !Ref RootOuId
+
+  CicdOu:
+    Type: AWS::Organizations::OrganizationalUnit
+    Properties:
+      Name: CI/CD
+      ParentId: !Ref RootOuId
+
+  ManagementOu:
+    Type: AWS::Organizations::OrganizationalUnit
+    Properties:
+      Name: Management
+      ParentId: !Ref RootOuId

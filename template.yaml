@@ -21,3 +21,8 @@ Resources:
     Type: AWS::Serverless::Application
     Properties:
       Location: "./stacksets/billing/template.yaml"
+
+  OuStack:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: "./stacksets/org-ou/template.yaml"
