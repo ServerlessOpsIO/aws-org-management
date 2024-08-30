@@ -9,20 +9,26 @@ Parameters:
     Description: Root OU Id
 
 Resources:
-  DevelopmentOu:
+  TestOu:
     Type: AWS::Organizations::OrganizationalUnit
     Properties:
-      Name: Development
+      Name: TestOu
       ParentId: !Ref RootOuId
 
-  CicdOu:
-    Type: AWS::Organizations::OrganizationalUnit
-    Properties:
-      Name: CI/CD
-      ParentId: !Ref RootOuId
-
-  ManagementOu:
-    Type: AWS::Organizations::OrganizationalUnit
-    Properties:
-      Name: Management
-      ParentId: !Ref RootOuId
+#  DevelopmentOu:
+#    Type: AWS::Organizations::OrganizationalUnit
+#    Properties:
+#      Name: Development
+#      ParentId: !Ref RootOuId
+#
+#  CicdOu:
+#    Type: AWS::Organizations::OrganizationalUnit
+#    Properties:
+#      Name: CI/CD
+#      ParentId: !Ref RootOuId
+#
+#  ManagementOu:
+#    Type: AWS::Organizations::OrganizationalUnit
+#    Properties:
+#      Name: Management
+#      ParentId: !Ref RootOuId
