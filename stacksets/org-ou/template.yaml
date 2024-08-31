@@ -9,12 +9,6 @@ Parameters:
     Description: Root OU Id
 
 Resources:
-  TestOu:
-    Type: AWS::Organizations::OrganizationalUnit
-    Properties:
-      Name: TestOu
-      ParentId: !Ref RootOuId
-
   DevelopmentOu:
     Type: AWS::Organizations::OrganizationalUnit
     Properties:
