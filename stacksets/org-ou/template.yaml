@@ -21,17 +21,17 @@ Resources:
       Name: Development
       ParentId: !Ref RootOuId
 
-  CicdOu:
-    Type: AWS::Organizations::OrganizationalUnit
-    Properties:
-      Name: CI/CD
-      ParentId: !Ref RootOuId
-
   ManagementOu:
     Type: AWS::Organizations::OrganizationalUnit
     Properties:
       Name: Management
       ParentId: !Ref RootOuId
+
+  CicdOu:
+    Type: AWS::Organizations::OrganizationalUnit
+    Properties:
+      Name: CI/CD
+      ParentId: !Ref ManagementOu
 
   ObservabilityOu:
     Type: AWS::Organizations::OrganizationalUnit
