@@ -32,3 +32,9 @@ Resources:
     Properties:
       Name: Management
       ParentId: !Ref RootOuId
+
+  ObservabilityOu:
+    Type: AWS::Organizations::OrganizationalUnit
+    Properties:
+      Name: Observability
+      ParentId: !Ref ManagementOu
