@@ -1,6 +1,6 @@
 # AWS Cloudformation template for stacksets/org-ou
 AWSTemplateFormatVersion: '2010-09-09'
-Transform: AWS::Serverless-2016-10-31
+#Transform: AWS::Serverless-2016-10-31
 Description: AWS Organization OUs
 
 Parameters:
@@ -17,21 +17,18 @@ Resources:
 
   DevelopmentOu:
     Type: AWS::Organizations::OrganizationalUnit
-    DeletionPolicy: Retain
     Properties:
       Name: Development
       ParentId: !Ref RootOuId
 
   CicdOu:
     Type: AWS::Organizations::OrganizationalUnit
-    DeletionPolicy: Retain
     Properties:
       Name: CI/CD
       ParentId: !Ref RootOuId
 
   ManagementOu:
     Type: AWS::Organizations::OrganizationalUnit
-    DeletionPolicy: Retain
     Properties:
       Name: Management
       ParentId: !Ref RootOuId
