@@ -32,5 +32,5 @@ Resources:
         RegionConcurrencyType: PARALLEL
         FailureToleranceCount: 1
         MaxConcurrentCount: 5
-      PermissionModel: SERVICE_MANAGED
+      PermissionModel: SELF_MANAGED
       TemplateBody: *template_body
