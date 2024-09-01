@@ -69,6 +69,9 @@ jobs:
       - name: Build artifact
         run: sam build --parallel --template template.yaml
 
+      - name: Build StackSet artifact
+        run: sam build --parallel --template stacksets.yaml
+
       - name: Upload SAM artifact
         id: upload-sam-template
         shell: bash
@@ -88,7 +91,7 @@ jobs:
             --s3-bucket aws-sam-cli-sourcebucket-346402060170-us-east-1  \
             --s3-prefix ${{ env.GITHUB_REPOSITORY_OWNER_PART_SLUG_URL }}/${{ env.GITHUB_REPOSITORY_NAME_PART_SLUG_URL }}/${{ env.GITHUB_REF_SLUG_URL }} \
             --region us-east-1 \
-            --output-template-file packaged-template.yaml
+            --output-template-file packaged-stacksets.yaml
 
       - name: 'Upload pipeline artifact'
         id: upload-artifact
@@ -305,7 +308,7 @@ jobs:
         shell: bash
         run: |
           sam deploy \
-            --template-file packaged-template.yaml \
+            --template-file packaged-stacksets.yaml \
             --stack-name ${{ env.GITHUB_REPOSITORY_NAME_PART_SLUG_URL }}-${{ env.GITHUB_EVENT_REF_SLUG_URL }} \
             --s3-bucket aws-sam-cli-sourcebucket-346402060170-us-east-1 \
             --s3-prefix ${{ env.GITHUB_REPOSITORY_OWNER_PART_SLUG_URL }}/${{ env.GITHUB_REPOSITORY_NAME_PART_SLUG_URL }}/${{ env.GITHUB_REF_SLUG_URL }} \
