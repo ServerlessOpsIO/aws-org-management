@@ -8,10 +8,6 @@ Parameters:
     Description: List of OUs
     Default: r-c834
 
-  StackSetsAccountId:
-    Type: String
-    Description: Account Id to deploy stacksets
-
 Resources:
   BillingStackManagement:
     Type: AWS::Serverless::Application
@@ -24,31 +20,3 @@ Resources:
       Location: "./stacksets/org-ou/template.yaml"
       Parameters:
        RootOuId: !Ref TargetOuIds
-
-  DelegatedAdminResourcePolicy:
-    Type: AWS::Organizations::ResourcePolicy
-    Properties:
-      Content: !Sub >-
-        {
-          "Version": "2012-10-17",
-          "Statement": [
-            {
-              "Sid": "StackSetsAccount",
-              "Principal": {
-                "AWS": "${StackSetsAccountId}"
-              },
-              "Effect": "Allow",
-              "Action": [
-                "organizations:DescribeOrganization",
-                "organizations:ListRoots",
-                "organizations:ListOrganizationalUnitsForParent",
-                "organizations:ListAccountsForParent",
-                "organizations:ListAWSServiceAccessForOrganization",
-                "organizations:ListPolicies",
-                "organizations:ListTargetsForPolicy",
-                "organizations:ListPoliciesForTarget"
-              ],
-              "Resource": "*"
-            }
-          ]
-        }

@@ -19,6 +19,7 @@ Resources:
     Properties:
       StackSetName: OrgBilling
       Description: Billing Alarms
+      CallAs: DELEGATED_ADMIN
       StackInstancesGroup:
         - DeploymentTargets:
             OrganizationalUnitIds: !Ref TargetOuIds
