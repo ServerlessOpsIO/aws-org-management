@@ -66,12 +66,6 @@ jobs:
               $_f;
           done
 
-      - name: Build artifact
-        run: sam build --parallel --template template.yaml
-
-      - name: Build StackSet artifact
-        run: sam build --parallel --template stacksets.yaml
-
       - name: Upload SAM artifact
         id: upload-sam-template
         shell: bash
