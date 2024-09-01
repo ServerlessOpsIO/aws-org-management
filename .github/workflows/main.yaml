@@ -77,6 +77,7 @@ jobs:
         shell: bash
         run: |
           sam package \
+            --template template.yaml \
             --s3-bucket aws-sam-cli-sourcebucket-346402060170-us-east-1  \
             --s3-prefix ${{ env.GITHUB_REPOSITORY_OWNER_PART_SLUG_URL }}/${{ env.GITHUB_REPOSITORY_NAME_PART_SLUG_URL }}/${{ env.GITHUB_REF_SLUG_URL }} \
             --region us-east-1 \
