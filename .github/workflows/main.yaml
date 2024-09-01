@@ -102,7 +102,7 @@ jobs:
           if-no-files-found: error
           retention-days: 30
 
-  deploy:
+  deploy_management:
     needs:
       - build
     runs-on: ubuntu-latest
@@ -219,7 +219,6 @@ jobs:
   deploy_stackset:
     needs:
       - build
-      - deploy
     runs-on: ubuntu-latest
     permissions:
       id-token: write
