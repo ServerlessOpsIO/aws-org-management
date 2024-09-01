@@ -211,6 +211,7 @@ jobs:
   deploy_stackset:
     needs:
       - build
+      - deploy
     runs-on: ubuntu-latest
     permissions:
       id-token: write

@@ -1,3 +1,4 @@
 {
-    "TargetOuIds": "r-c834"
+    "TargetOuIds": "r-c834",
+    "StackSetsAccountId": $secrets.STACKSETS_ACCOUNT_ID
 }
