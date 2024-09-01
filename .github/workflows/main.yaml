@@ -204,6 +204,7 @@ jobs:
             --s3-prefix ${{ env.GITHUB_REPOSITORY_OWNER_PART_SLUG_URL }}/${{ env.GITHUB_REPOSITORY_NAME_PART_SLUG_URL }}/${{ env.GITHUB_REF_SLUG_URL }} \
             --region us-east-1 \
             --role-arn arn:aws:iam::349603509961:role/CfnExecIamRole \
+            --on-failure DELETE \
             $AWS_CFN_PARAMS \
             $AWS_CFN_TAGS
 
@@ -309,5 +310,6 @@ jobs:
             --s3-prefix ${{ env.GITHUB_REPOSITORY_OWNER_PART_SLUG_URL }}/${{ env.GITHUB_REPOSITORY_NAME_PART_SLUG_URL }}/${{ env.GITHUB_REF_SLUG_URL }} \
             --region us-east-1 \
             --role-arn arn:aws:iam::774305573766:role/CfnExecIamRole \
+            --on-failure DELETE \
             $AWS_CFN_PARAMS \
             $AWS_CFN_TAGS
