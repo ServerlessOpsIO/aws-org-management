@@ -67,19 +67,8 @@ jobs:
             --region us-east-1 \
             --output-template-file packaged-delegate-template.yaml
 
-      - name: 'Upload pipeline artifact'
-        id: upload-artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ env.GITHUB_REPOSITORY_SLUG }}-${{ env.GITHUB_REF_SLUG_URL }}-${{ github.run_number }}-${{ github.sha }}
-          path: |
-            **/*
-            !.aws-sam/build
-            !**/.terraform/providers
-            !node_modules
-            !.git
-          if-no-files-found: error
-          retention-days: 30
+      - name: Store Artifacts
+        uses: ServerlessOpsIO/gha-store-artifacts@v1
 
   deploy_management:
     needs:
