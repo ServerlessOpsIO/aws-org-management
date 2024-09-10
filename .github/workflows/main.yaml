@@ -101,6 +101,8 @@ jobs:
         uses: ServerlessOpsIO/gha-deploy-aws-sam@v1
         with:
           aws_account_id: ${{ secrets.AWS_MANAGEMENT_ACCOUNT_ID }}
+          env_json: ${{ toJson(env) }}
+          secrets_json: ${{ toJson(secrets) }}
 
   deploy_delegate:
     needs:
@@ -134,3 +136,5 @@ jobs:
         with:
           aws_account_id: ${{ secrets.AWS_STACKSETS_ACCOUNT_ID }}
           template_file: packaged-delegate-template.yaml
+          env_json: ${{ toJson(env) }}
+          secrets_json: ${{ toJson(secrets) }}
