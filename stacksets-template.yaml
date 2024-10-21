@@ -9,6 +9,14 @@ Parameters:
     Default: r-c834
 
 Resources:
+  ApigLoggingStackSet:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: "./stacksets/apig-logging/stackset.yaml"
+      Parameters:
+        TargetOuIds: !Ref TargetOuIds
+        TargetRegions: us-east-1
+
   BillingStackSet:
     Type: AWS::Serverless::Application
     Properties:
