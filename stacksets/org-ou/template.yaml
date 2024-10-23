@@ -15,6 +15,12 @@ Resources:
       Name: Development
       ParentId: !Ref RootOuId
 
+  InfrastructureOu:
+    Type: AWS::Organizations::OrganizationalUnit
+    Properties:
+      Name: Infrastructure
+      ParentId: !Ref RootOuId
+
   ManagementOu:
     Type: AWS::Organizations::OrganizationalUnit
     Properties:
