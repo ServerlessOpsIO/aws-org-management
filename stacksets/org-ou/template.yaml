@@ -31,10 +31,10 @@ Resources:
     Type: AWS::Organizations::OrganizationalUnit
     Properties:
       Name: CI/CD
-      ParentId: !Ref ManagementOu
+      ParentId: !Ref InfrastructureOu
 
   ObservabilityOu:
     Type: AWS::Organizations::OrganizationalUnit
     Properties:
       Name: Observability
-      ParentId: !Ref ManagementOu
+      ParentId: !Ref InfrastructureOu
