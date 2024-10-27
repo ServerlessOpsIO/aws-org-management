@@ -19,11 +19,6 @@ Resources:
     Properties:
       Location: "./stacksets/billing/template.yaml"
 
-  DnsStack:
-    Type: AWS::Serverless::Application
-    Properties:
-      Location: "./stacksets/dns/template.yaml"
-
   OuStack:
     Type: AWS::Serverless::Application
     Properties:
