@@ -19,6 +19,11 @@ Resources:
     Properties:
       Location: "./stacksets/billing/template.yaml"
 
+  EventBridgeLogging:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: "./stacksets/eventbridge-logging/template.yaml"
+
   OuStack:
     Type: AWS::Serverless::Application
     Properties:

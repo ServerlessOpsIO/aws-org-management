@@ -24,3 +24,11 @@ Resources:
       Parameters:
         TargetOuIds: !Ref TargetOuIds
         TargetRegions: us-east-1
+
+  EventBridgeLoggingStackSet:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: "./stacksets/eventbridge-logging/stackset.yaml"
+      Parameters:
+        TargetOuIds: !Ref TargetOuIds
+        TargetRegions: us-east-1
