@@ -9,7 +9,7 @@ Parameters:
     Default: r-c834
 
 Resources:
-  ApigLoggingStackSet:
+  ApigLoggingStack:
     Type: AWS::Serverless::Application
     Properties:
       Location: "./stacksets/apig-logging/stackset.yaml"
@@ -17,7 +17,7 @@ Resources:
         TargetOuIds: !Ref TargetOuIds
         TargetRegions: us-east-1
 
-  BillingStackSet:
+  BillingStack:
     Type: AWS::Serverless::Application
     Properties:
       Location: "./stacksets/billing/stackset.yaml"
@@ -25,7 +25,7 @@ Resources:
         TargetOuIds: !Ref TargetOuIds
         TargetRegions: us-east-1
 
-  EventBridgeLoggingStackSet:
+  EventBridgeLoggingStack:
     Type: AWS::Serverless::Application
     Properties:
       Location: "./stacksets/eventbridge-logging/stackset.yaml"
