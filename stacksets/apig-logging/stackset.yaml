@@ -19,7 +19,6 @@ Resources:
     Properties:
       StackSetName: ApigLogging
       Description: API Gateway Logging
-      CallAs: DELEGATED_ADMIN
       StackInstancesGroup:
         - DeploymentTargets:
             OrganizationalUnitIds: !Ref TargetOuIds
