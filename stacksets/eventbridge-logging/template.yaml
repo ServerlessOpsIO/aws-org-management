@@ -6,7 +6,7 @@ Resources:
       Type: AWS::Logs::ResourcePolicy
       Properties:
         PolicyName: "EventBridgeLoggingPolicy"
-        PolicyDocument: |
+        PolicyDocument: !Sub |
             {
                 "Statement": [
                     {
@@ -18,7 +18,7 @@ Resources:
                         "Principal": {
                             "Service": ["events.amazonaws.com", "delivery.logs.amazonaws.com"]
                         },
-                        "Resource": "arn:aws:logs:region:account:log-group:/aws/events/*:*",
+                        "Resource": "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/events/*:*",
                         "Sid": "TrustEventsToStoreLogEvent"
                     }
                 ],
