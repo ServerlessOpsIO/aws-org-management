@@ -101,6 +101,7 @@ jobs:
         uses: ServerlessOpsIO/gha-deploy-aws-sam@v1
         with:
           aws_account_id: ${{ secrets.AWS_MANAGEMENT_ACCOUNT_ID }}
+          stack_name: "${{ env.GITHUB_REPOSITORY_NAME_PART_SLUG_URL }}-${{ env.GITHUB_EVENT_REF_SLUG_URL }}"
           env_json: ${{ toJson(env) }}
           secrets_json: ${{ toJson(secrets) }}
 
@@ -134,6 +135,7 @@ jobs:
       - name: Deploy via AWS SAM
         uses: ServerlessOpsIO/gha-deploy-aws-sam@v1
         with:
+          stack_name: "${{ env.GITHUB_REPOSITORY_NAME_PART_SLUG_URL }}-${{ env.GITHUB_EVENT_REF_SLUG_URL }}-stackset-deploy"
           aws_account_id: ${{ secrets.AWS_MANAGEMENT_ACCOUNT_ID }}
           template_file: packaged-stacksets-template.yaml
           cfn_capabilities: CAPABILITY_NAMED_IAM,CAPABILITY_AUTO_EXPAND
