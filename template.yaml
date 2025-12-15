@@ -2,13 +2,23 @@ AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: AWS account infrastructure
 
-Parameters:
-  TargetOuIds:
-    Type: String
-    Description: List of OUs
-
-
 Resources:
+
+  AwsOrganization:
+    Type: AWS::Organizations::Organization
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Properties:
+      FeatureSet: ALL
+
+  AwsOrganizationManagementAccount:
+    Type: AWS::Organizations::Account
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Properties:
+      AccountName: Management
+      Email: admin+aws-management@serverlessops.io
+
   ApigLoggingStack:
     Type: AWS::Serverless::Application
     Properties:
@@ -29,7 +39,7 @@ Resources:
     Properties:
       Location: "./stacks/org-ou/template.yaml"
       Parameters:
-       RootOuId: !Ref TargetOuIds
+       RootOuId: !GetAtt AwsOrganization.RootId
 
   AccountStack:
     Type: AWS::Serverless::Application
