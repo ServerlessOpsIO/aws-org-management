@@ -1,0 +1,19 @@
+# AWS Cloudformation template for stacksets/org-ou
+AWSTemplateFormatVersion: '2010-09-09'
+#Transform: AWS::Serverless-2016-10-31
+Description: AWS Organization Control Plane accounts
+
+Parameters:
+  RootOuId:
+    Type: String
+    Description: Root OU Id
+
+Resources:
+  TestSsmParameter:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Name: /org/test
+      Type: String
+      Description: Test value for control plane
+      Value: test-value
+

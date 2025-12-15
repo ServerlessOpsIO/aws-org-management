@@ -30,3 +30,11 @@ Resources:
       Location: "./stacks/org-ou/template.yaml"
       Parameters:
        RootOuId: !Ref TargetOuIds
+
+  AccountStack:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: "./stacks/accounts/template.yaml"
+      Parameters:
+       RootOuId: !Ref TargetOuIds
+
