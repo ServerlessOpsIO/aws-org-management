@@ -36,5 +36,5 @@ Resources:
     Properties:
       Location: "./stacks/accounts/template.yaml"
       Parameters:
-       RootOuId: !Ref TargetOuIds
+       SecurityOuId: 'ou-c834-uy4w2lbf'
 

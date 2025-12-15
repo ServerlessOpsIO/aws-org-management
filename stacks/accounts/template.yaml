@@ -4,16 +4,27 @@ AWSTemplateFormatVersion: '2010-09-09'
 Description: AWS Organization Control Plane accounts
 
 Parameters:
-  RootOuId:
+  SecurityOuId:
     Type: String
-    Description: Root OU Id
+    Description: ID of Security OU
 
 Resources:
-  TestSsmParameter:
-    Type: AWS::SSM::Parameter
+  AuditAccount:
+    Type: AWS::Organizations::Account
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
-      Name: /org/test
-      Type: String
-      Description: Test value for control plane
-      Value: test-value
+      AccountName: Audit
+      Email: admin+aws-audit@serverlessopsio.com
+      ParentIds:
+        - !Ref SecurityOuId
 
+  LogArchiveAccount:
+    Type: AWS::Organizations::Account
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Properties:
+      AccountName: Log Archive
+      Email: admin+aws-log-archive@serverlessops.io
+      ParentIds:
+        - !Ref SecurityOuId
