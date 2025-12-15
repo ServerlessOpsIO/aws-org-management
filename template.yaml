@@ -27,6 +27,6 @@ Resources:
   OuStack:
     Type: AWS::Serverless::Application
     Properties:
-      Location: "./stacksets/org-ou/template.yaml"
+      Location: "./stacks/org-ou/template.yaml"
       Parameters:
        RootOuId: !Ref TargetOuIds
