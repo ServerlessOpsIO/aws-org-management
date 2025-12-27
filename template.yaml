@@ -29,7 +29,7 @@ Resources:
   AccountStack:
     Type: AWS::Serverless::Application
     Properties:
-      Location: "./stacks/accounts/template.yaml"
+      Location: "./stacks/org-accounts/template.yaml"
       Parameters:
        SecurityOuId: 'ou-c834-uy4w2lbf'
 
