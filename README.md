@@ -1,6 +1,6 @@
 # aws-org-management
 
-AWS organization account management
+AWS organization management
 
 This repository provides resources in the form of CloudFormation templates for managing the ServerlessOps AWS organization and Cloudformation StackSets for providing baseline configuration to the accounts within it. This repository does not cover the entirety of account baseline configuration. Certain larger and more complex configuration, eg. GitHub Actions and Datadog integration, are managed in separate repositories.
 

@@ -19,21 +19,6 @@ Resources:
       AccountName: Management
       Email: admin+aws-management@serverlessops.io
 
-  ApigLoggingStack:
-    Type: AWS::Serverless::Application
-    Properties:
-      Location: "./stacksets/apig-logging/template.yaml"
-
-  BillingStackManagement:
-    Type: AWS::Serverless::Application
-    Properties:
-      Location: "./stacksets/billing/template.yaml"
-
-  EventBridgeLogging:
-    Type: AWS::Serverless::Application
-    Properties:
-      Location: "./stacksets/eventbridge-logging/template.yaml"
-
   OuStack:
     Type: AWS::Serverless::Application
     Properties:
