@@ -1,1 +1,3 @@
-{}
+{
+  "SecurityOuId": $secrets.AWS_SECURITY_OU_ID
+}

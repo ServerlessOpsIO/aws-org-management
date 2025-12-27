@@ -2,6 +2,11 @@ AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: AWS account infrastructure
 
+Parameters:
+  SecurityOuId:
+    Type: String
+    Description: ID of Security OU
+
 Resources:
 
   AwsOrganization:
@@ -31,7 +36,7 @@ Resources:
     Properties:
       Location: "./stacks/org-accounts/template.yaml"
       Parameters:
-       SecurityOuId: 'ou-c834-uy4w2lbf'
+       SecurityOuId: !Ref SecurityOuId
 
   ControlTowerStack:
     Type: AWS::Serverless::Application
