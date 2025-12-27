@@ -1,0 +1,13 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: AWS Organization Control Plane - Control Tower
+
+Parameters: {}
+
+Resources:
+  SsmParameterAuditAccountId:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Name: /org/accounts/stacks/control-tower
+      Type: String
+      Value: "temp"
+      Description: "temp value for CFN resource imports."

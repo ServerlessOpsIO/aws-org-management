@@ -33,3 +33,7 @@ Resources:
       Parameters:
        SecurityOuId: 'ou-c834-uy4w2lbf'
 
+  ControlTowerStack:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: "./stacks/control-tower/template.yaml"
