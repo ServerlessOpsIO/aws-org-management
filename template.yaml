@@ -29,14 +29,14 @@ Resources:
     Properties:
       Location: "./stacks/org-ou/template.yaml"
       Parameters:
-       RootOuId: !GetAtt AwsOrganization.RootId
+        RootOuId: !GetAtt AwsOrganization.RootId
 
   AccountStack:
     Type: AWS::Serverless::Application
     Properties:
       Location: "./stacks/org-accounts/template.yaml"
       Parameters:
-       SecurityOuId: !Ref SecurityOuId
+        SecurityOuId: !Ref SecurityOuId
 
   ControlTowerStack:
     Type: AWS::Serverless::Application
