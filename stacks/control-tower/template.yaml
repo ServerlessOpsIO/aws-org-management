@@ -1,13 +1,26 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: AWS Organization Control Plane - Control Tower
 
-Parameters: {}
+Parameters:
+  AuditAccountId:
+    Type: String
+    Description: Audit Account Id
+  LogArchiveAccountId:
+    Type: String
+    Description: Log Archive Account Id
 
 Resources:
   SsmParameterAuditAccountId:
     Type: AWS::SSM::Parameter
     Properties:
-      Name: /org/accounts/stacks/control-tower
+      Name: /org/accounts/stacks/control-tower/AuditAccountId
       Type: String
-      Value: "temp"
-      Description: "temp value for CFN resource imports."
+      Value: !Ref AuditAccountId
+      Description: "Audit account ID"
+  SsmParameterLogArchiveAccountId:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Name: /org/accounts/stacks/control-tower/LogArchiveAccountId
+      Type: String
+      Value: !Ref LogArchiveAccountId
+      Description: "Log archive account ID"

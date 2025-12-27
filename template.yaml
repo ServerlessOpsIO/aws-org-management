@@ -42,3 +42,6 @@ Resources:
     Type: AWS::Serverless::Application
     Properties:
       Location: "./stacks/control-tower/template.yaml"
+      Parameters:
+        AuditAccountId: !GetAtt AccountStack.Outputs.AuditAccountId
+        LogArchiveAccountId: !GetAtt AccountStack.Outputs.LogArchiveAccountId

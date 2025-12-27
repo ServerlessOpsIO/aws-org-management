@@ -26,3 +26,12 @@ Resources:
       Email: admin+aws-log-archive@serverlessops.io
       ParentIds:
         - !Ref SecurityOuId
+
+Outputs:
+  AuditAccountId:
+    Description: Audit Account Id
+    Value: !Ref AuditAccount
+
+  LogArchiveAccountId:
+    Description: Log Archive Account Id
+    Value: !Ref LogArchiveAccount
