@@ -63,5 +63,6 @@ jobs:
           aws_account_id: ${{ secrets.AWS_MANAGEMENT_ACCOUNT_ID }}
           stack_name: "${{ env.GITHUB_REPOSITORY_NAME_PART_SLUG_URL }}-${{ env.GITHUB_EVENT_REF_SLUG_URL }}"
           env_json: ${{ toJson(env) }}
+          vars_json: ${{ toJson(vars) }}
           secrets_json: ${{ toJson(secrets) }}
 
