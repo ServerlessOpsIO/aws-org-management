@@ -1,6 +1,6 @@
 {
   "ControlTowerLzVersion": "3.3",
-  "ControlTowerLzRegions": "us-east-1,us-west-2",
+  "ControlTowerLzRegions": "us-east-1,us-east-2",
   "ControlTowerLzLoggingBucketRetentionDays": 365,
   "ControlTowerLzAccessLoggingBucketRetentionDays": 365
 }
