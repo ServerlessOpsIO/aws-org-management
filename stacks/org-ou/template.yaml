@@ -10,24 +10,32 @@ Parameters:
 Resources:
   DevelopmentOu:
     Type: AWS::Organizations::OrganizationalUnit
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
       Name: Development
       ParentId: !Ref RootOuId
 
   InfrastructureOu:
     Type: AWS::Organizations::OrganizationalUnit
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
       Name: Infrastructure
       ParentId: !Ref RootOuId
 
   CicdOu:
     Type: AWS::Organizations::OrganizationalUnit
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
       Name: CI/CD
       ParentId: !Ref InfrastructureOu
 
   ObservabilityOu:
     Type: AWS::Organizations::OrganizationalUnit
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
       Name: Observability
       ParentId: !Ref InfrastructureOu
