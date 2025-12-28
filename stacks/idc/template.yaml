@@ -4,9 +4,9 @@ Description: AWS Organization Control Plane - IAM IdC SSO
 Parameters: {}
 
 Resources:
-  SsmParameterSsoInstanceArn:
-    Type: AWS::SSM::Parameter
+  SsoInstance:
+    Type: AWS::SSO::Instance
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
-      Name: /tmp/sso/instance
-      Type: String
-      Value: "temp"
+      Name: ServerlessOps
