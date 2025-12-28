@@ -39,3 +39,20 @@ Resources:
     Properties:
       Name: Observability
       ParentId: !Ref InfrastructureOu
+
+  SecurityOu:
+    Type: AWS::Organizations::OrganizationalUnit
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Properties:
+      Name: Security
+      ParentId: !Ref RootOuId
+
+  SuspendedOu:
+    Type: AWS::Organizations::OrganizationalUnit
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Properties:
+      Name: Suspended
+      ParentId: !Ref RootOuId
+
