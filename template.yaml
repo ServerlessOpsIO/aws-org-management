@@ -3,9 +3,6 @@ Transform: AWS::Serverless-2016-10-31
 Description: AWS account infrastructure
 
 Parameters:
-  SecurityOuId:
-    Type: String
-    Description: ID of Security OU
   ControlTowerLzVersion:
     Type: String
     Description: Control Tower Landing Zone Version
@@ -48,7 +45,7 @@ Resources:
     Properties:
       Location: "./stacks/org-accounts/template.yaml"
       Parameters:
-        SecurityOuId: !Ref SecurityOuId
+        SecurityOuId: !GetAtt OuStack.Outputs.SecurityOuId
 
   ControlTowerStack:
     Type: AWS::Serverless::Application

@@ -56,3 +56,17 @@ Resources:
       Name: Suspended
       ParentId: !Ref RootOuId
 
+Outputs:
+  # We're only outputing top-level OU information because we need it elsewherew.
+  SecurityOuId:
+    Description: Security OU Id
+    Value: !Ref SecurityOu
+  SuspendedOuId:
+    Description: Suspended OU Id
+    Value: !Ref SuspendedOu
+  InfrastructureOuId:
+    Description: Infrastructure OU Id
+    Value: !Ref InfrastructureOu
+  DevelopmentOuId:
+    Description: Development OU Id
+    Value: !Ref DevelopmentOu
