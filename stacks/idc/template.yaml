@@ -1,0 +1,12 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: AWS Organization Control Plane - IAM IdC SSO
+
+Parameters: {}
+
+Resources:
+  SsmParameterSsoInstanceArn:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Name: /tmp/sso/instance
+      Type: String
+      Value: "temp"

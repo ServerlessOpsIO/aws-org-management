@@ -58,3 +58,8 @@ Resources:
         LzRegions: !Ref ControlTowerLzRegions
         LzLoggingBucketRetentionDays: !Ref ControlTowerLzLoggingBucketRetentionDays
         LzAccessLoggingBucketRetentionDays: !Ref ControlTowerLzAccessLoggingBucketRetentionDays
+
+  IdcStack:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: "./stacks/idc/template.yaml"
