@@ -6,6 +6,18 @@ Parameters:
   SecurityOuId:
     Type: String
     Description: ID of Security OU
+  ControlTowerLzVersion:
+    Type: String
+    Description: Control Tower Landing Zone Version
+  ControlTowerLzRegions:
+    Type: String
+    Description: List of regions for Control Tower Landing Zone
+  ControlTowerLzLoggingBucketRetentionDays:
+    Type: Number
+    Description: Number of days to retain logs in the logging bucket
+  ControlTowerLzAccessLoggingBucketRetentionDays:
+    Type: Number
+    Description: Number of days to retain logs in the access logging bucket
 
 Resources:
 
@@ -45,3 +57,7 @@ Resources:
       Parameters:
         AuditAccountId: !GetAtt AccountStack.Outputs.AuditAccountId
         LogArchiveAccountId: !GetAtt AccountStack.Outputs.LogArchiveAccountId
+        LzVersion: !Ref ControlTowerLzVersion
+        LzRegions: !Ref ControlTowerLzRegions
+        LzLoggingBucketRetentionDays: !Ref ControlTowerLzLoggingBucketRetentionDays
+        LzAccessLoggingBucketRetentionDays: !Ref ControlTowerLzAccessLoggingBucketRetentionDays

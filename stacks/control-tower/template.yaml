@@ -8,19 +8,41 @@ Parameters:
   LogArchiveAccountId:
     Type: String
     Description: Log Archive Account Id
+  LzVersion:
+    Type: String
+    Description: Control Tower Landing Zone Version
+  LzRegions:
+    Type: CommaDelimitedList
+    Description: List of regions for Control Tower Landing Zone
+  LzLoggingBucketRetentionDays:
+    Type: Number
+    Description: Number of days to retain logs in the logging bucket
+  LzAccessLoggingBucketRetentionDays:
+    Type: Number
+    Description: Number of days to retain logs in the access logging bucket
 
 Resources:
-  SsmParameterAuditAccountId:
-    Type: AWS::SSM::Parameter
+  LandingZone:
+    Type: AWS::ControlTower::LandingZone
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
-      Name: /org/accounts/stacks/control-tower/AuditAccountId
-      Type: String
-      Value: !Ref AuditAccountId
-      Description: "Audit account ID"
-  SsmParameterLogArchiveAccountId:
-    Type: AWS::SSM::Parameter
-    Properties:
-      Name: /org/accounts/stacks/control-tower/LogArchiveAccountId
-      Type: String
-      Value: !Ref LogArchiveAccountId
-      Description: "Log archive account ID"
+      Version: !Ref LzVersion
+      Manifest:
+        accessManagement:
+          enabled: false
+        governedRegions: !Ref LzRegions
+        organizationStructure:
+          security:
+            name: "Security"
+        securityRoles:
+          accountId: !Ref AuditAccountId
+        centralizedLogging:
+          enabled: true
+          accountId: !Ref LogArchiveAccountId
+          configurations:
+            loggingBucket:
+              retentionDays: !Ref LzLoggingBucketRetentionDays
+            accessLoggingBucket:
+              retentionDays: !Ref LzAccessLoggingBucketRetentionDays
+
