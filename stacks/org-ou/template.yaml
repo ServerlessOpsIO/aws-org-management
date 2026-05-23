@@ -48,9 +48,9 @@ Outputs:
   SuspendedOuId:
     Description: Suspended OU Id
     Value: !Ref SuspendedOu
-  InfrastructureOuId:
-    Description: Infrastructure OU Id
-    Value: !Ref InfrastructureOu
+  PlatformOuId:
+    Description: Platform OU Id
+    Value: !Ref PlatformOu
   DevelopmentOuId:
     Description: Development OU Id
     Value: !Ref DevelopmentOu
