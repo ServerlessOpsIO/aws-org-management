@@ -62,4 +62,4 @@ Resources:
   IdcStack:
     Type: AWS::Serverless::Application
     Properties:
-      Location: "./stacks/idc/template.yaml"
+      Location: "./stacks/idc-sso/template.yaml"
