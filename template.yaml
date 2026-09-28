@@ -29,20 +29,15 @@ Resources:
       Parameters:
         RootOuId: !GetAtt OrganizationStack.Outputs.OrganizationRootId
 
-  AccountStack:
-    Type: AWS::Serverless::Application
-    Properties:
-      Location: "./stacks/org-accounts/template.yaml"
-      Parameters:
-        SecurityOuId: !GetAtt OuStack.Outputs.SecurityOuId
-
   ControlTowerStack:
     Type: AWS::Serverless::Application
     Properties:
       Location: "./stacks/control-tower/template.yaml"
       Parameters:
-        AuditAccountId: !GetAtt AccountStack.Outputs.AuditAccountId
-        LogArchiveAccountId: !GetAtt AccountStack.Outputs.LogArchiveAccountId
+        #AuditAccountId: !GetAtt AccountStack.Outputs.AuditAccountId
+        #LogArchiveAccountId: !GetAtt AccountStack.Outputs.LogArchiveAccountId
+        AuditAccountId: "975050136080"
+        LogArchiveAccountId: "851725503002"
         LzVersion: !Ref ControlTowerLzVersion
         LzRegions: !Ref ControlTowerLzRegions
         LzLoggingBucketRetentionDays: !Ref ControlTowerLzLoggingBucketRetentionDays
