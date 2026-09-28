@@ -1,12 +1,95 @@
 AWSTemplateFormatVersion: 2010-09-09
 Description: AWS IdC - Permission Sets
 
-Parameters: {}
+Parameters:
+  SsoInstance:
+    Type: String
+    Description: SSO Instance ARN
 
 Resources:
-  DummyParam:
-    Type: AWS::SSM::Parameter
+  AWSOrganizationsFullAccess:
+    Type: AWS::SSO::PermissionSet
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
-      Name: '/dummy/idc-permission-sets'
-      Type: String
-      Value: "DUMMY"
+      Name: AWSOrganizationsFullAccess
+      Description: Provides full access to AWS Organizations
+      InstanceArn: !Ref SsoInstance
+      SessionDuration: PT4H
+      ManagedPolicies:
+        - arn:aws:iam::aws:policy/AWSOrganizationsFullAccess
+
+  AWSAdministratorAccess:
+    Type: AWS::SSO::PermissionSet
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Properties:
+      Name: AWSAdministratorAccess
+      Description: Provides full access to AWS services and resources
+      InstanceArn: !Ref SsoInstance
+      SessionDuration: PT4H
+      ManagedPolicies:
+        - arn:aws:iam::aws:policy/AdministratorAccess
+
+  AWSPowerUserAccess:
+    Type: AWS::SSO::PermissionSet
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Properties:
+      Name: AWSPowerUserAccess
+      Description: Provides full access to AWS services and resources, but does not allow management of Users and groups
+      InstanceArn: !Ref SsoInstance
+      SessionDuration: PT4H
+      ManagedPolicies:
+        - arn:aws:iam::aws:policy/PowerUserAccess
+        # FIXME: This was added to deal with issues around IAM. This can be removed so the
+        # permission set reverts back to standard once we create a replacement permission set.
+        - arn:aws:iam::aws:policy/IAMReadOnlyAccess
+
+  AWSReadOnlyAccess:
+    Type: AWS::SSO::PermissionSet
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Properties:
+      Name: AWSReadOnlyAccess
+      Description: This policy grants permissions to view resources and basic metadata across all AWS services
+      InstanceArn: !Ref SsoInstance
+      SessionDuration: PT4H
+      ManagedPolicies:
+        - arn:aws:iam::aws:policy/ReadOnlyAccess
+
+  AWSReadOnlyWithAwsMcpAccess:
+    Type: AWS::SSO::PermissionSet
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Properties:
+      Name: AWSReadOnlyWithAwsMcpAccess
+      Description: AWSReadOnlyAccess with AWS MCP access.
+      InstanceArn: !Ref SsoInstance
+      SessionDuration: PT4H
+      ManagedPolicies:
+        - arn:aws:iam::aws:policy/ReadOnlyAccess
+
+  AWSServiceCatalogEndUserAccess:
+    Type: AWS::SSO::PermissionSet
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Properties:
+      Name: AWSServiceCatalogEndUserAccess
+      Description: Provides access to the AWS Service Catalog end user console
+      InstanceArn: !Ref SsoInstance
+      SessionDuration: PT1H
+      ManagedPolicies:
+        - arn:aws:iam::aws:policy/AWSServiceCatalogEndUserFullAccess
+
+  AWSServiceCatalogAdminFullAccess:
+    Type: AWS::SSO::PermissionSet
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Properties:
+      Name: AWSServiceCatalogAdminFullAccess
+      Description: Provides full access to AWS Service Catalog admin capabilities
+      InstanceArn: !Ref SsoInstance
+      SessionDuration: PT1H
+      ManagedPolicies:
+        - arn:aws:iam::aws:policy/AWSServiceCatalogAdminFullAccess

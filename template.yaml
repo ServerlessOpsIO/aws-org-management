@@ -57,3 +57,5 @@ Resources:
     Type: AWS::Serverless::Application
     Properties:
       Location: "./stacks/idc-permission-sets/template.yaml"
+      Parameters:
+        SsoInstance: !GetAtt IdcStack.Outputs.SsoInstanceArn

@@ -10,3 +10,16 @@ Resources:
     UpdateReplacePolicy: Retain
     Properties:
       Name: ServerlessOps
+
+Outputs:
+  SsoInstanceArn:
+    Description: SSO Instance ARN
+    Value: !GetAtt SsoInstance.InstanceArn
+
+  SsoInstanceIdentityStoreId:
+    Description: SSO Instance IdentityStoreId
+    Value: !GetAtt SsoInstance.IdentityStoreId
+
+  SsoOwnerAccountId:
+    Description: SSO Owner Account Id
+    Value: !GetAtt SsoInstance.OwnerAccountId
