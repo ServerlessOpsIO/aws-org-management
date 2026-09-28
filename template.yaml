@@ -17,22 +17,6 @@ Parameters:
     Description: Number of days to retain logs in the access logging bucket
 
 Resources:
-
-  AwsOrganization:
-    Type: AWS::Organizations::Organization
-    DeletionPolicy: Retain
-    UpdateReplacePolicy: Retain
-    Properties:
-      FeatureSet: ALL
-
-  AwsOrganizationManagementAccount:
-    Type: AWS::Organizations::Account
-    DeletionPolicy: Retain
-    UpdateReplacePolicy: Retain
-    Properties:
-      AccountName: Management
-      Email: admin+aws-management@serverlessops.io
-
   OrganizationStack:
     Type: AWS::Serverless::Application
     Properties:
@@ -43,7 +27,7 @@ Resources:
     Properties:
       Location: "./stacks/org-ou/template.yaml"
       Parameters:
-        RootOuId: !GetAtt AwsOrganization.RootId
+        RootOuId: r-c834
 
   AccountStack:
     Type: AWS::Serverless::Application
