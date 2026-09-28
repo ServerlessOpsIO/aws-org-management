@@ -33,6 +33,11 @@ Resources:
       AccountName: Management
       Email: admin+aws-management@serverlessops.io
 
+  OrganizationStack:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: "./stacks/org/template.yaml"
+
   OuStack:
     Type: AWS::Serverless::Application
     Properties:

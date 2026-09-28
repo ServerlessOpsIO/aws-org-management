@@ -1,0 +1,12 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: AWS Organization Control Plane - AWS Organization
+
+Parameters: {}
+
+Resources:
+  DummyParam:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Name: /dummy/org-stack
+      Type: String
+      Value: DUMMY
