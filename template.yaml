@@ -50,6 +50,7 @@ Resources:
 
   IdcStack:
     Type: AWS::Serverless::Application
+    DependsOn: OrganizationStack
     Properties:
       Location: "./stacks/idc-sso/template.yaml"
 
