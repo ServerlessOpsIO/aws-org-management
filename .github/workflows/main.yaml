@@ -29,6 +29,9 @@ jobs:
       - name: Validate artifact
         run: sam validate --lint
 
+      - name: Build stack
+        run: sam build
+
       - name: Store Artifacts
         uses: ServerlessOpsIO/gha-store-artifacts@v2
         with:
