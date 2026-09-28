@@ -1,0 +1,12 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: AWS IdC - Permission Sets
+
+Parameters: {}
+
+Resources:
+  DummyParam:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Name: '/dummy/idc-permission-sets'
+      Type: String
+      Value: "DUMMY"
