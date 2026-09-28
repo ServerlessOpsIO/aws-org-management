@@ -4,9 +4,17 @@ Description: AWS Organization Control Plane - AWS Organization
 Parameters: {}
 
 Resources:
-  DummyParam:
-    Type: AWS::SSM::Parameter
+  AwsOrganization:
+    Type: AWS::Organizations::Organization
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
-      Name: /dummy/org-stack
-      Type: String
-      Value: DUMMY
+      FeatureSet: ALL
+
+  AwsOrganizationManagementAccount:
+    Type: AWS::Organizations::Account
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Properties:
+      AccountName: Management
+      Email: admin+aws-management@serverlessops.io
