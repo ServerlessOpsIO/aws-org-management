@@ -41,10 +41,8 @@ Resources:
     Properties:
       Location: "./stacks/control-tower/template.yaml"
       Parameters:
-        #AuditAccountId: !GetAtt AccountStack.Outputs.AuditAccountId
-        #LogArchiveAccountId: !GetAtt AccountStack.Outputs.LogArchiveAccountId
-        AuditAccountId: "975050136080"
-        LogArchiveAccountId: "851725503002"
+        AuditAccountId: !GetAtt ControlTowerAccountsStack.Outputs.AuditAccountId
+        LogArchiveAccountId: !GetAtt ControlTowerAccountsStack.Outputs.LogArchiveAccountId
         LzVersion: !Ref ControlTowerLzVersion
         LzRegions: !Ref ControlTowerLzRegions
         LzLoggingBucketRetentionDays: !Ref ControlTowerLzLoggingBucketRetentionDays
