@@ -27,7 +27,7 @@ Resources:
     Properties:
       Location: "./stacks/org-ou/template.yaml"
       Parameters:
-        RootOuId: r-c834
+        RootOuId: !GetAtt OrganizationStack.Outputs.OrganizationRootId
 
   AccountStack:
     Type: AWS::Serverless::Application

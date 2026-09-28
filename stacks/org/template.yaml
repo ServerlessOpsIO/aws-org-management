@@ -18,3 +18,24 @@ Resources:
     Properties:
       AccountName: Management
       Email: admin+aws-management@serverlessops.io
+
+Outputs:
+  OrganizationId:
+    Description: The AWS Organization ID
+    Value: !Ref AwsOrganization
+
+  OrganizationArn:
+    Description: The AWS Organization ARN
+    Value: !GetAtt AwsOrganization.Arn
+
+  OrganizationRootId:
+    Description: The AWS Organization Root ID
+    Value: !GetAtt AwsOrganization.RootId
+
+  OrganizationManagementAccountId:
+    Description: The AWS Organization Management Account ID
+    Value: !GetAtt AwsOrganization.ManagementAccountId
+
+  OrganizationManagementAccountArn:
+    Description: The AWS Organization Management Account ARN
+    Value: !GetAtt AwsOrganization.ManagementAccountArn
