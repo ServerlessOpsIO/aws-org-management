@@ -29,6 +29,13 @@ Resources:
       Parameters:
         RootOuId: !GetAtt OrganizationStack.Outputs.OrganizationRootId
 
+  ControlTowerAccountsStack:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: "./stacks/control-tower-accounts/template.yaml"
+      Parameters:
+        SecurityOuId: !GetAtt OuStack.Outputs.SecurityOuId
+
   ControlTowerStack:
     Type: AWS::Serverless::Application
     Properties:

@@ -1,0 +1,44 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: AWS Organization Control Plane - Base Accounts
+
+Parameters:
+  SecurityOuId:
+    Type: String
+    Description: ID of Security OU
+
+Resources:
+  DummyParam:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Name: /dummy/control-tower-accounts
+      Type: String
+      Value: DUMMY
+
+#  AuditAccount:
+#    Type: AWS::Organizations::Account
+#    DeletionPolicy: Retain
+#    UpdateReplacePolicy: Retain
+#    Properties:
+#      AccountName: Audit
+#      Email: admin+aws-audit@serverlessopsio.com
+#      ParentIds:
+#        - !Ref SecurityOuId
+
+#  LogArchiveAccount:
+#    Type: AWS::Organizations::Account
+#    DeletionPolicy: Retain
+#    UpdateReplacePolicy: Retain
+#    Properties:
+#      AccountName: Log Archive
+#      Email: admin+aws-log-archive@serverlessops.io
+#      ParentIds:
+#        - !Ref SecurityOuId
+
+#Outputs:
+#  AuditAccountId:
+#    Description: Audit Account Id
+#    Value: !Ref AuditAccount
+#
+#  LogArchiveAccountId:
+#    Description: Log Archive Account Id
+#    Value: !Ref LogArchiveAccount
