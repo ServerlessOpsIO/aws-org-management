@@ -36,10 +36,10 @@ Resources:
       Parameters:
         SecurityOuId: !GetAtt OuStack.Outputs.SecurityOuId
 
-#  ControlTowerStack:
-#    Type: AWS::Serverless::Application
-#    Properties:
-#      Location: "./stacks/control-tower/template.yaml"
+  ControlTowerStack:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: "./stacks/control-tower/template.yaml"
 #      Parameters:
 #        AuditAccountId: !GetAtt ControlTowerAccountsStack.Outputs.AuditAccountId
 #        LogArchiveAccountId: !GetAtt ControlTowerAccountsStack.Outputs.LogArchiveAccountId
