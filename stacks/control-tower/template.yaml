@@ -29,14 +29,9 @@ Resources:
     Properties:
       Version: !Ref LzVersion
       Manifest:
+        governedRegions: !Ref LzRegions
         accessManagement:
           enabled: false
-        governedRegions: !Ref LzRegions
-        organizationStructure:
-          security:
-            name: "Security"
-        securityRoles:
-          accountId: !Ref AuditAccountId
         centralizedLogging:
           enabled: true
           accountId: !Ref LogArchiveAccountId
@@ -45,3 +40,8 @@ Resources:
               retentionDays: !Ref LzLoggingBucketRetentionDays
             accessLoggingBucket:
               retentionDays: !Ref LzAccessLoggingBucketRetentionDays
+        config:
+          enabled: false
+        securityRoles:
+          enabled: true
+          accountId: !Ref AuditAccountId
