@@ -41,7 +41,13 @@ Resources:
             accessLoggingBucket:
               retentionDays: !Ref LzAccessLoggingBucketRetentionDays
         config:
-          enabled: false
+          enabled: true
+          accountId: !Ref AuditAccountId
+          configurations:
+            loggingBucket:
+              retentionDays: !Ref LzLoggingBucketRetentionDays
+            accessLoggingBucket:
+              retentionDays: !Ref LzAccessLoggingBucketRetentionDays
         securityRoles:
           enabled: true
           accountId: !Ref AuditAccountId
