@@ -36,7 +36,7 @@ Resources:
           security:
             name: "Security"
         securityRoles:
-          accountId: !Ref LogArchiveAccountId
+          accountId: !Ref AuditAccountId
         centralizedLogging:
           enabled: true
           accountId: !Ref LogArchiveAccountId
