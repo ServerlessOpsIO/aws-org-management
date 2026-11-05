@@ -1,55 +1,47 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: AWS Organization Control Plane - Control Tower
 
-Parameters: {}
-#  AuditAccountId:
-#    Type: String
-#    Description: Audit Account Id
-#  LogArchiveAccountId:
-#    Type: String
-#    Description: Log Archive Account Id
-#  LzVersion:
-#    Type: String
-#    Description: Control Tower Landing Zone Version
-#  LzRegions:
-#    Type: CommaDelimitedList
-#    Description: List of regions for Control Tower Landing Zone
-#  LzLoggingBucketRetentionDays:
-#    Type: Number
-#    Description: Number of days to retain logs in the logging bucket
-#  LzAccessLoggingBucketRetentionDays:
-#    Type: Number
-#    Description: Number of days to retain logs in the access logging bucket
+Parameters:
+  AuditAccountId:
+    Type: String
+    Description: Audit Account Id
+  LogArchiveAccountId:
+    Type: String
+    Description: Log Archive Account Id
+  LzVersion:
+    Type: String
+    Description: Control Tower Landing Zone Version
+  LzRegions:
+    Type: CommaDelimitedList
+    Description: List of regions for Control Tower Landing Zone
+  LzLoggingBucketRetentionDays:
+    Type: Number
+    Description: Number of days to retain logs in the logging bucket
+  LzAccessLoggingBucketRetentionDays:
+    Type: Number
+    Description: Number of days to retain logs in the access logging bucket
 
 Resources:
-  DummyParam:
-    Type: AWS::SSM::Parameter
+  LandingZone:
+    Type: AWS::ControlTower::LandingZone
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
-      Name: "/control-tower-stack/dummy"
-      Type: String
-      Value: "dummy"
-
-#  LandingZone:
-#    Type: AWS::ControlTower::LandingZone
-#    DeletionPolicy: Retain
-#    UpdateReplacePolicy: Retain
-#    Properties:
-#      Version: !Ref LzVersion
-#      Manifest:
-#        accessManagement:
-#          enabled: false
-#        governedRegions: !Ref LzRegions
-#        organizationStructure:
-#          security:
-#            name: "Security"
-#        securityRoles:
-#          accountId: !Ref AuditAccountId
-#        centralizedLogging:
-#          enabled: true
-#          accountId: !Ref LogArchiveAccountId
-#          configurations:
-#            loggingBucket:
-#              retentionDays: !Ref LzLoggingBucketRetentionDays
-#            accessLoggingBucket:
-#              retentionDays: !Ref LzAccessLoggingBucketRetentionDays
-
+      Version: !Ref LzVersion
+      Manifest:
+        accessManagement:
+          enabled: false
+        governedRegions: !Ref LzRegions
+        organizationStructure:
+          security:
+            name: "Security"
+        securityRoles:
+          accountId: !Ref AuditAccountId
+        centralizedLogging:
+          enabled: true
+          accountId: !Ref LogArchiveAccountId
+          configurations:
+            loggingBucket:
+              retentionDays: !Ref LzLoggingBucketRetentionDays
+            accessLoggingBucket:
+              retentionDays: !Ref LzAccessLoggingBucketRetentionDays
