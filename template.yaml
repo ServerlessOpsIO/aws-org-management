@@ -37,6 +37,7 @@ Resources:
       Parameters:
         LzVersion: !Ref ControlTowerLzVersion
         LzRegions: !Ref ControlTowerLzRegions
+        AuditAccountId: !GetAtt ControlTowerAccountsStack.Outputs.AuditAccountId
 
   IdcStack:
     Type: AWS::Serverless::Application

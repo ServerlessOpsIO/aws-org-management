@@ -8,6 +8,9 @@ Parameters:
   LzRegions:
     Type: CommaDelimitedList
     Description: List of regions for Control Tower Landing Zone
+  AuditAccountId:
+    Type: String
+    Description: Audit Account Id
 
 Resources:
   LandingZone:
@@ -25,4 +28,5 @@ Resources:
         config:
           enabled: false
         securityRoles:
-          enabled: false
+          enabled: true
+          accountId: !Ref AuditAccountId
