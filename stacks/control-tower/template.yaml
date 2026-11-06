@@ -26,7 +26,13 @@ Resources:
         centralizedLogging:
           enabled: false
         config:
-          enabled: false
+          enabled: true
+          accountId: !Ref AuditAccountId
+          configurations:
+            loggingBucket:
+              retentionDays: 365
+            accessLoggingBucket:
+              retentionDays: 365
         securityRoles:
           enabled: true
           accountId: !Ref AuditAccountId
