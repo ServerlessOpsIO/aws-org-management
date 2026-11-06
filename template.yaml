@@ -9,12 +9,6 @@ Parameters:
   ControlTowerLzRegions:
     Type: String
     Description: List of regions for Control Tower Landing Zone
-  ControlTowerLzLoggingBucketRetentionDays:
-    Type: Number
-    Description: Number of days to retain logs in the logging bucket
-  ControlTowerLzAccessLoggingBucketRetentionDays:
-    Type: Number
-    Description: Number of days to retain logs in the access logging bucket
 
 Resources:
   OrganizationStack:
@@ -41,12 +35,8 @@ Resources:
     Properties:
       Location: "./stacks/control-tower/template.yaml"
       Parameters:
-        AuditAccountId: !GetAtt ControlTowerAccountsStack.Outputs.AuditAccountId
-        LogArchiveAccountId: !GetAtt ControlTowerAccountsStack.Outputs.LogArchiveAccountId
         LzVersion: !Ref ControlTowerLzVersion
         LzRegions: !Ref ControlTowerLzRegions
-        LzLoggingBucketRetentionDays: !Ref ControlTowerLzLoggingBucketRetentionDays
-        LzAccessLoggingBucketRetentionDays: !Ref ControlTowerLzAccessLoggingBucketRetentionDays
 
   IdcStack:
     Type: AWS::Serverless::Application

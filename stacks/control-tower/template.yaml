@@ -2,24 +2,12 @@ AWSTemplateFormatVersion: '2010-09-09'
 Description: AWS Organization Control Plane - Control Tower
 
 Parameters:
-  AuditAccountId:
-    Type: String
-    Description: Audit Account Id
-  LogArchiveAccountId:
-    Type: String
-    Description: Log Archive Account Id
   LzVersion:
     Type: String
     Description: Control Tower Landing Zone Version
   LzRegions:
     Type: CommaDelimitedList
     Description: List of regions for Control Tower Landing Zone
-  LzLoggingBucketRetentionDays:
-    Type: Number
-    Description: Number of days to retain logs in the logging bucket
-  LzAccessLoggingBucketRetentionDays:
-    Type: Number
-    Description: Number of days to retain logs in the access logging bucket
 
 Resources:
   LandingZone:
@@ -33,21 +21,8 @@ Resources:
         accessManagement:
           enabled: false
         centralizedLogging:
-          enabled: true
-          accountId: !Ref LogArchiveAccountId
-          configurations:
-            loggingBucket:
-              retentionDays: !Ref LzLoggingBucketRetentionDays
-            accessLoggingBucket:
-              retentionDays: !Ref LzAccessLoggingBucketRetentionDays
+          enabled: false
         config:
-          enabled: true
-          accountId: !Ref AuditAccountId
-          configurations:
-            loggingBucket:
-              retentionDays: !Ref LzLoggingBucketRetentionDays
-            accessLoggingBucket:
-              retentionDays: !Ref LzAccessLoggingBucketRetentionDays
+          enabled: false
         securityRoles:
-          enabled: true
-          accountId: !Ref AuditAccountId
+          enabled: false
