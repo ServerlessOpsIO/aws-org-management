@@ -23,6 +23,8 @@ Resources:
         governedRegions: !Ref LzRegions
         accessManagement:
           enabled: false
+        backup:
+          enabled: false
         centralizedLogging:
           enabled: false
         config:
