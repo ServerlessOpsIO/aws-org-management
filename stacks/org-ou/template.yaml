@@ -16,6 +16,14 @@ Resources:
       Name: Development
       ParentId: !Ref RootOuId
 
+  PersonalOu:
+    Type: AWS::Organizations::OrganizationalUnit
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Properties:
+      Name: Personal
+      ParentId: !Ref RootOuId
+
   PlatformOu:
     Type: AWS::Organizations::OrganizationalUnit
     DeletionPolicy: Retain
