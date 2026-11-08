@@ -8,11 +8,21 @@ Parameters:
   LzRegions:
     Type: CommaDelimitedList
     Description: List of regions for Control Tower Landing Zone
-  AuditAccountId:
+  SecurityOuId:
     Type: String
-    Description: Audit Account Id
+    Description: ID of Security OU
 
 Resources:
+  AuditAccount:
+    Type: AWS::Organizations::Account
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Properties:
+      AccountName: Audit
+      Email: admin+aws-audit@serverlessopsio.com
+      ParentIds:
+        - !Ref SecurityOuId
+
   LandingZone:
     Type: AWS::ControlTower::LandingZone
     DeletionPolicy: Retain
@@ -29,7 +39,7 @@ Resources:
           enabled: false
         config:
           enabled: true
-          accountId: !Ref AuditAccountId
+          accountId: !Ref AuditAccount
           configurations:
             loggingBucket:
               retentionDays: 365
@@ -37,4 +47,4 @@ Resources:
               retentionDays: 365
         securityRoles:
           enabled: true
-          accountId: !Ref AuditAccountId
+          accountId: !Ref AuditAccount
